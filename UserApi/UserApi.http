@@ -1,0 +1,161 @@
+@UserApi_HostAddress = https://localhost:7237
+
+GET {{UserApi_HostAddress}}/api/user
+
+###
+
+POST {{UserApi_HostAddress}}/api/user
+Content-Type: application/json
+
+{
+    "FirstName" : "Bob",
+    "LastName" : "Der Baumeister",
+    "BirthDate" : "2001-03-11",
+    "Email" : "bob@baumeister.com",
+    "IsActive" : true,
+    "Password" : "12345"
+}
+
+###
+
+@id=1
+DELETE {{UserApi_HostAddress}}/api/user/{{id}}
+
+###
+
+GET {{UserApi_HostAddress}}/api/user/{{id}}
+
+###
+
+PUT {{UserApi_HostAddress}}/api/user/{{id}}
+Content-Type: application/json
+
+{
+    "Id" : {{id}},
+    "FirstName" : "Bob",
+    "LastName" : "Der Baumeister",
+    "BirthDate" : "2001-03-11",
+    "Email" : "bob@baumeister.com",
+    "IsActive" : false,
+    "Password" : "12345"
+}
+
+###
+
+GET {{UserApi_HostAddress}}/api/product
+
+###
+
+POST {{UserApi_HostAddress}}/api/product
+Content-Type: application/json
+
+{
+    {
+        "PcsInStock" : 4,
+        "Price" : 11.99,
+        "ProductName" : "Chocolate"
+    }
+}
+
+###
+@id = 1
+DELETE {{UserApi_HostAddress}}/api/product/{{id}}
+
+###
+@id = 1
+GET {{UserApi_HostAddress}}/api/product/{{id}}
+
+###
+
+@id = 1
+PUT {{UserApi_HostAddress}}/api/product/{{id}}
+Content-Type: application/json
+
+{
+        {
+        "PcsInStock" : 6,
+        "Price" : 12.99,
+        "ProductName" : "Chocolate"
+    }
+}
+
+###
+
+GET {{UserApi_HostAddress}}/api/order
+
+###
+
+POST {{UserApi_HostAddress}}/api/order
+Content-Type: application/json
+
+{
+    "userId" : 1,
+    "totalPices" : 1
+    "products" : 
+    [
+        {"id": 1}
+    ]
+}
+
+###
+@id = 5
+GET {{UserApi_HostAddress}}/api/order/5
+
+###
+@id = 1
+PUT {{UserApi_HostAddress}}/api/order/{{id}}
+Content-Type: application/json
+
+{
+    "id" : {{id}},
+    "userId" : 1,
+    "totalPices" : 1,
+    "products" : 
+    [
+        {"id": 3}
+    ]
+}
+
+###
+
+DELETE {{UserApi_HostAddress}}/api/order/{{id}}
+
+###
+
+POST {{UserApi_HostAddress}}/api/order/batch
+Content-Type: application/json
+[
+    {
+        "userId": 1,
+        "totalPieces": 2,
+        "productIds": [1, 2]
+    },
+    {
+        "userId": 1,
+        "totalPieces": 1,
+        "productIds": [3]
+    }
+]
+###
+
+POST {{UserApi_HostAddress}}/api/product/batch
+Content-Type: application/json
+
+[
+    {
+        "pcsInStodck" : 4,
+        "price": 11.99,
+        "productName" : "Chocholate"
+    },
+    {
+        "pcsInStock": 2,
+        "price": 9.44,
+        "productName": "Bread"
+    },
+    {
+        "pcsInStock": 10,
+        "price": 3.50,
+        "productName": "Water"
+    }
+]
+###
